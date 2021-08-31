@@ -1,10 +1,10 @@
 module.exports.config = {
-    name: "girl",
+    name: "điền tên lệnh",
     version: "1.0.0",
     hasPermssion: 0,
     credits: "JustGon", //Giữ Credit tôn trọng thằng làm ra
     description: "request ảnh",
-    commandCategory: "girl",
+    commandCategory: "điền tên lệnh",
     usages: "[tag]",
     cooldowns: 5,
     dependencies: {
@@ -14,9 +14,9 @@ module.exports.config = {
 module.exports.run = async function ({ event, api, args }) {
     const { threadID, messageID } = event;
     var reply = {
-        body: "ảnh gái",
+        body: "điền thứ bot sẽ reply cùng ảnh",
         attachment: (await global.nodemodule["axios"]({
-            url: (await global.nodemodule["axios"]('https://api.ditlolichapfbi.tk/image?type=gai')).data.data, //Nếu api dạng chatfuel thì là .data[0].data '-'
+            url: (await global.nodemodule["axios"]('điền link api ảnh vào đây')).data.data, //Nếu api dạng chatfuel thì là .data[0].data '-'
             method: "GET", 
             responseType: "stream"
         })).data
