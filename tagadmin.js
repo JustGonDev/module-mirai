@@ -19,6 +19,6 @@ module.exports.handleEvent = function({ api, event }) {
 			return api.sendMessage(msg, event.threadID, event.messageID);
 		}
 	}
-module.exports.run = function({ api, event, client }) {
+module.exports.run = function({}) {
 
 }
