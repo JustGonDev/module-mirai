@@ -1,1 +1,24 @@
-var _0xd99067=_0x1fb7;function _0x1764(){var _0x28ce74=['tag\x20đb','2772288zLutTP','handleEvent','floor','886220YTgsiJ','JustGon','tag\x20admin\x20bot\x20làm\x20gì?','threadID','18KIOfCF','exports','11tNgPTZ','sendMessage','noprefix','random','1oHPfdJ','2396532WzANDX','tagadmin','4904767DLilVV','run','5GDEIJz','keys','1042736rzlUbK','1686102pLDLNK','mentions','753992GygCwW','config','length'];_0x1764=function(){return _0x28ce74;};return _0x1764();}function _0x1fb7(_0xf996de,_0x149ffa){var _0x176416=_0x1764();return _0x1fb7=function(_0x1fb756,_0x56bc7b){_0x1fb756=_0x1fb756-0xae;var _0x1e1b28=_0x176416[_0x1fb756];return _0x1e1b28;},_0x1fb7(_0xf996de,_0x149ffa);}(function(_0x13ee7b,_0x5580bd){var _0x3f507f=_0x1fb7,_0x58eab2=_0x13ee7b();while(!![]){try{var _0x3f5d5b=-parseInt(_0x3f507f(0xc8))/0x1*(-parseInt(_0x3f507f(0xb4))/0x2)+-parseInt(_0x3f507f(0xb5))/0x3+parseInt(_0x3f507f(0xbb))/0x4+parseInt(_0x3f507f(0xb2))/0x5*(parseInt(_0x3f507f(0xae))/0x6)+-parseInt(_0x3f507f(0xb0))/0x7+parseInt(_0x3f507f(0xb7))/0x8*(parseInt(_0x3f507f(0xc2))/0x9)+parseInt(_0x3f507f(0xbe))/0xa*(-parseInt(_0x3f507f(0xc4))/0xb);if(_0x3f5d5b===_0x5580bd)break;else _0x58eab2['push'](_0x58eab2['shift']());}catch(_0x2e3d5d){_0x58eab2['push'](_0x58eab2['shift']());}}}(_0x1764,0x6e1cf),module[_0xd99067(0xc3)][_0xd99067(0xb8)]={'name':_0xd99067(0xaf),'version':'1.0.0','hasPermssion':0x0,'credits':_0xd99067(0xbf),'description':_0xd99067(0xaf),'commandCategory':_0xd99067(0xc6),'usages':_0xd99067(0xc6),'cooldowns':0x5},module[_0xd99067(0xc3)][_0xd99067(0xbc)]=function({api:_0x21e43f,event:_0x166a39}){var _0x563970=_0xd99067,_0x33df96=[_0x563970(0xba),_0x563970(0xc0)],_0x365eb0=_0x33df96[Math[_0x563970(0xbd)](Math[_0x563970(0xc7)]()*_0x33df96[_0x563970(0xb9)])],_0x256785=Object[_0x563970(0xb3)](_0x166a39[_0x563970(0xb6)])[0x0];if(_0x256785==global[_0x563970(0xb8)]['ADMINBOT']){var _0x1646cb={'body':_0x365eb0};return _0x21e43f[_0x563970(0xc5)](_0x1646cb,_0x166a39[_0x563970(0xc1)],_0x166a39['messageID']);}},module[_0xd99067(0xc3)][_0xd99067(0xb1)]=function({api:_0x348517,event:_0x1f9ae5,client:_0x2fd986}){});
+module.exports.config = {
+name: "tagadmin",
+	version: "1.0.0",
+	hasPermssion: 0,
+	credits: "JustGon",//Giữ Credit tôn trọng thằng làm ra
+	description: "tagadmin",
+	commandCategory: "noprefix",
+	usages: "noprefix",
+	cooldowns: 5,
+};
+module.exports.handleEvent = function({ api, event }) {
+        var reply = ["tag đb", "tag admin bot làm gì?"];
+        var replyrand = reply[Math.floor(Math.random() * reply.length)];
+        var mention = Object.keys(event.mentions)[0]
+	if (mention == global.config.ADMINBOT) {
+		var msg = {
+				body: replyrand
+			}
+			return api.sendMessage(msg, event.threadID, event.messageID);
+		}
+	}
+module.exports.run = function({ api, event, client }) {
+
+}
