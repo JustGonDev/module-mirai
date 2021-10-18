@@ -18,26 +18,41 @@ module.exports.run = async function ({ event, api, args }) {
     var request = require("request")
 
     if (!args[1]) {
-      let { data } = await axios.get('https://corona.lmao.ninja/v2/countries/viet%20nam')
+    let { data } = await axios.get('https://disease.sh/v3/covid-19/countries/vietnam')
     var nhiemvn = data.cases,
         chetvn = data.deaths,
-        dieutrivn = data.recovered,
-        dansovn = data.population,
+        khoibenh = data.recovered,
+        xetnhiem = data.tests
+        danso = data.population,
         chauluc = data.continent
-        var callback = () => api.sendMessage({body: '-----🇻🇳Việt Nam🇻🇳-----\n' + `Nhiễm: ${nhiemvn}\n` + `Điều trị khỏi: ${dieutrivn}\n` + `Tử vong: ${chetvn}\n` + `Dân số : ${dansovn}\n` + `Châu Lục : ${chauluc}`,attachment: fs.createReadStream(__dirname + "/cache/covidjg.png")}, event.threadID, () => fs.unlinkSync(__dirname + "/cache/covidjg.png"),event.messageID);
-    request(encodeURI('https://disease.sh/assets/img/flags/vn.png')).pipe(fs.createWriteStream(__dirname+'/cache/covidjg.png')).on('close',() => callback());
+        flag = data.countryInfo.flag
+        api.sendMessage({
+            body: '-----🇻🇳Việt Nam🇻🇳-----\n' + `Nhiễm: ${nhiemvn}\n` + `Tử vong: ${chetvn}\n` + `Khỏi bệnh : ${khoibenh}\n` + `Xét nhiệm : ${xetnhiem}\n` + `Dân số : ${danso}\n` + `Châu Lục : ${chauluc}\n`,
+            attachment: (await axios({
+                url: flag,
+                method: "GET", 
+                responseType: "stream"
+            })).data
+        }, event.threadID ,event.messageID);
     } else {
     try {
         var location = args.join(" ")
-        let { data } = await axios.get(`https://corona.lmao.ninja/v2/countries/${location}`)
-        var nhiem = data.cases,
-            chet = data.deaths,
-            dieutri = data.recovered,
-            danso = data.population,
-            chauluc = data.continent
-            var flag = data.countryInfo.flag
-            var callback = () => api.sendMessage({body: `-----${location}-----\n` + `Nhiễm: ${nhiem}\n` + `Điều trị khỏi: ${dieutri}\n` + `Tử vong: ${chet}\n` + `Dân số : ${danso}\n` + `Châu Lục : ${chauluc}`,attachment: fs.createReadStream(__dirname + "/cache/covidjg.png")}, event.threadID, () => fs.unlinkSync(__dirname + "/cache/covidjg.png"),event.messageID);
-            request(encodeURI(flag)).pipe(fs.createWriteStream(__dirname+'/cache/covidjg.png')).on('close',() => callback());
+        let { data } = await axios.get(`https://disease.sh/v3/covid-19/countries/${location}`)
+        var nhiemvn = data.cases,
+        chetvn = data.deaths,
+        khoibenh = data.recovered,
+        xetnhiem = data.tests
+        danso = data.population,
+        chauluc = data.continent
+        flag = data.countryInfo.flag
+        api.sendMessage({
+            body: `-----${data.country}-----\n` + `Nhiễm: ${nhiemvn}\n` + `Tử vong: ${chetvn}\n` + `Khỏi bệnh : ${khoibenh}\n` + `Xét nhiệm : ${xetnhiem}\n` + `Dân số : ${danso}\n` + `Châu Lục : ${chauluc}\n`,
+            attachment: (await axios({
+                url: flag,
+                method: "GET", 
+                responseType: "stream"
+            })).data
+        }, event.threadID ,event.messageID);
     } catch {
     api.sendMessage("Country not found or doesn't have any cases", event.threadID, event.messageID)
     }
