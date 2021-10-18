@@ -12,12 +12,10 @@ module.exports.config = {
     }
 };
 module.exports.run = async function ({ event, api, args }) {
-
     var axios = require("axios");
     var fs = require("fs")
     var request = require("request")
-
-    if (!args[1]) {
+    if (!args[0]) {
     let { data } = await axios.get('https://disease.sh/v3/covid-19/countries/vietnam')
     var nhiemvn = data.cases,
         chetvn = data.deaths,
